@@ -3,8 +3,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 import allure
-
-
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
@@ -12,7 +10,7 @@ class BasePage:
     @allure.step('Подождать прогрузки элемента')
     def wait_visibility_of_element(self, locator):
         WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
-
+        
     @allure.step('Найти элемент на странице')
     def find_element_with_wait(self, locator):
         self.wait_visibility_of_element(locator)
