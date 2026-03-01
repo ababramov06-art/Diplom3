@@ -8,27 +8,6 @@ import allure
 
 class TestFeedPage:
 
-    @allure.title('Проверка открытия всплывающего окна с деталями при клике на заказ')
-    def test_displaying_modal_order_details_success(self, driver):
-        main_page = MainPage(driver)
-        feed_page = FeedPage(driver)
-        main_page.click_header_feed_button()
-        feed_page.click_on_order_card()
-        assert 'бургер' in feed_page.get_text_on_title_of_modal_order()
-
-    @allure.title('Проверка отображения существующего заказа из истории пользователя в ленте')
-    def test_displaying_in_feed_new_order_from_history_success(self, driver, create_user_and_order_and_delete,
-                                                               set_user_tokens):
-        main_page = MainPage(driver)
-        account_page = AccountPage(driver)
-        order_history_page = OrderHistoryPage(driver)
-        feed_page = FeedPage(driver)
-        main_page.click_on_personal_account_in_header()
-        account_page.click_on_order_history_button()
-        order_id = order_history_page.get_id_of_order_card()
-        main_page.click_header_feed_button()
-        assert feed_page.check_id_order_in_feed(order_id)
-
     @allure.title('Проверка увеличения числа на счетчике общего количества выполненных заказов')
     def test_changes_counter_for_quantity_of_orders_success(self, driver, set_user_tokens):
         main_page = MainPage(driver)

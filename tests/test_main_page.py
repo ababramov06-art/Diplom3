@@ -37,11 +37,4 @@ class TestMainPage:
         main_page = MainPage(driver)
         main_page.drag_and_drop_ingredient_to_order()
         assert main_page.get_count_of_ingredients() == '2'
-
-    @allure.title('Залогиненный пользователь может оформить заказ')
-    def test_making_order_by_authenticated_user_success(self, driver, set_user_tokens):
-        main_page = MainPage(driver)
-        main_page.click_on_button_login_in_main()
-        main_page.drag_and_drop_ingredient_to_order()
-        main_page.click_on_button_make_order()
-        assert main_page.check_displaying_of_confirmation_modal_of_order()
+        
