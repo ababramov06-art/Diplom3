@@ -69,3 +69,6 @@ class MainPageLocators:
     # Кнопка с крестиком, закрывающая окно подтвержденного заказа
     button_close_confirmation = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")'
                                            ']//button[contains(@class, "close")]')
+
+    # Оверлей. Подарок от наставника.
+    OVERLAY = By.XPATH, ".//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"
