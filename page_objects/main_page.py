@@ -59,7 +59,6 @@ class MainPage(BasePage):
 
     @allure.step('Закрыть окно "Детали ингредиента"')
     def close_modal(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         self.wait_visibility_of_element(MainPageLocators.button_close_modal)
         self.click_on_element(MainPageLocators.button_close_modal)
 
@@ -87,7 +86,6 @@ class MainPage(BasePage):
 
     @allure.step('Получить номер в окне о создании заказа')
     def get_number_of_order_in_modal_confirmation(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         self.wait_for_element_to_change_text(MainPageLocators.number_of_order_in_modal_confirmation, '9999')
         return self.get_text_on_element(MainPageLocators.number_of_order_in_modal_confirmation)
 

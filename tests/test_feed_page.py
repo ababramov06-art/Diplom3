@@ -5,6 +5,7 @@ from page_objects.account_page import AccountPage
 from conftest import *
 import allure
 from selenium.common.exceptions import TimeoutException
+import time
 
 class TestFeedPage:
 
@@ -69,11 +70,15 @@ class TestFeedPage:
        
     # Ожидание появления заказа в разделе «В работе»
         try:
+            time.sleep(5)
             order_in_progress = feed_page.get_order_number_in_feed_progress_section()
         except TimeoutException:
             raise AssertionError("Заказ не появился в разделе «В работе» в течение 20 с")
-    
-        assert new_order_id_clean == order_in_progress.strip(), \
-        f"Номер заказа {new_order_id_clean} не найден в разделе «В работе» (найдено: {order_in_progress})"
+        
+        if order_in_progress.startswith('0'):
+                order_in_progress_clean = order_in_progress[1:]  # убираем ведущий ноль
+            
+        assert new_order_id_clean == order_in_progress_clean.strip(), \
+        f"Номер заказа {new_order_id_clean} не найден в разделе «В работе» (найдено: {order_in_progress_clean})"
 
     

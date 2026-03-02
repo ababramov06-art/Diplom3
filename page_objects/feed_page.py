@@ -2,7 +2,6 @@ from page_objects.base_page import BasePage
 from locators.feed_page_locators import FeedPageLocators
 import allure
 
-
 class FeedPage(BasePage):
     @allure.step('Получить текст заголовка раздела заказов')
     def get_text_on_title_of_orders_list(self):
