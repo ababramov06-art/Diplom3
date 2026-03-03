@@ -12,7 +12,6 @@ class MainPage(BasePage):
 
     @allure.step('Кликнуть по кнопке "Лента заказов" в хэдере')
     def click_header_feed_button(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         self.wait_visibility_of_element(MainPageLocators.button_order_feed_in_header)
         self.click_on_element(MainPageLocators.button_order_feed_in_header)
 
@@ -87,7 +86,9 @@ class MainPage(BasePage):
     @allure.step('Получить номер в окне о создании заказа')
     def get_number_of_order_in_modal_confirmation(self):
         self.wait_for_element_to_change_text(MainPageLocators.number_of_order_in_modal_confirmation, '9999')
-        return self.get_text_on_element(MainPageLocators.number_of_order_in_modal_confirmation)
+        number_of_order = 0
+        number_of_order = self.get_text_on_element(MainPageLocators.number_of_order_in_modal_confirmation)
+        return number_of_order
 
     @allure.step('Кликнуть на кнопку закрытия окна о создании заказа')
     def click_on_button_close_confirmation_modal(self):

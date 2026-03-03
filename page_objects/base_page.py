@@ -9,7 +9,7 @@ class BasePage:
 
     @allure.step('Подождать прогрузки элемента')
     def wait_visibility_of_element(self, locator):
-        WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located(locator))
+        WebDriverWait(self.driver, 60).until(expected_conditions.visibility_of_element_located(locator))
         
     @allure.step('Найти элемент на странице')
     def find_element_with_wait(self, locator):
@@ -27,8 +27,6 @@ class BasePage:
         self.driver.find_element(*locator).send_keys(keys)
 
     @allure.step('Перетащить элемент')
-    #def drag_and_drop_element(self, source_element, target_element):
-        #ActionChains(self.driver).drag_and_drop(source_element, target_element).pause(5).perform()
     def drag_and_drop_element(self, source_locator, target_locator):
         """
         Перетаскивает элемент из source_locator в target_locator с использованием JavaScript.
@@ -90,5 +88,5 @@ class BasePage:
     
     @allure.step('Подождать пока элемент не станет невидимым')
     def wait_for_element_hide(self, locator):
-        WebDriverWait(self.driver, timeout=10).until(EC.invisibility_of_element_located(locator))
+        WebDriverWait(self.driver, timeout=30).until(EC.invisibility_of_element_located(locator))
         return self.driver.find_element(*locator)

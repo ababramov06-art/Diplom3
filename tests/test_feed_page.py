@@ -46,6 +46,7 @@ class TestFeedPage:
         main_page.click_on_button_login_in_main()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
+
         new_order_id = main_page.get_number_of_order_in_modal_confirmation()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
