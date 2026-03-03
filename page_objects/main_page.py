@@ -64,10 +64,10 @@ class MainPage(BasePage):
 
     @allure.step('Добавить интгридиенты')
     def drag_and_drop_ingredient_to_order(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        source_element = self.find_element_with_wait(MainPageLocators.burger_ingredient)
-        target_element = self.find_element_with_wait(MainPageLocators.place_for_ingredients)
-        self.drag_and_drop_element(source_element, target_element)
+        #self.wait_for_element_hide(MainPageLocators.OVERLAY)
+        #source_locator = self.find_element_with_wait(MainPageLocators.burger_ingredient)
+        #target_locator = self.find_element_with_wait(MainPageLocators.place_for_ingredients)
+        self.drag_and_drop_element(MainPageLocators.burger_ingredient, MainPageLocators.place_for_ingredients)
 
     @allure.step('Получить количество ингредиентов')
     def get_count_of_ingredients(self):
