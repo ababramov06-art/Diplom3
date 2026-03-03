@@ -1,4 +1,5 @@
 from page_objects.main_page import MainPage
+from locators.main_page_locators import MainPageLocators
 from page_objects.feed_page import FeedPage
 from conftest import *
 import allure
@@ -35,6 +36,7 @@ class TestMainPage:
     @allure.title('Проверка увеличения числа на счетчике при добавлении ингредиента в заказ')
     def test_changing_counter_for_ingredients_in_order_success(self, driver):
         main_page = MainPage(driver)
+        main_page.wait_for_element_hide(MainPageLocators.OVERLAY)
         main_page.drag_and_drop_ingredient_to_order()
         assert main_page.get_count_of_ingredients() == '2'
         
