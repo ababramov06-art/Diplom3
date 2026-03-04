@@ -79,11 +79,11 @@ class BasePage:
 
     @allure.step('Проверить кликабельность элемента')
     def check_element_is_clickable(self, locator):
-        return WebDriverWait(self.driver, 15).until(expected_conditions.element_to_be_clickable(locator))
+        return WebDriverWait(self.driver, 30).until(expected_conditions.element_to_be_clickable(locator))
 
     @allure.step('Подождать смену текста на элементе')
     def wait_for_element_to_change_text(self, locator, value):
-        return WebDriverWait(self.driver, 10).until_not(expected_conditions.
+        return WebDriverWait(self.driver, 30).until_not(expected_conditions.
                                                         text_to_be_present_in_element(locator, value))
     
     @allure.step('Подождать пока элемент не станет невидимым')

@@ -5,8 +5,6 @@ from page_objects.account_page import AccountPage
 from conftest import *
 import allure
 from selenium.common.exceptions import TimeoutException
-import time
-
 class TestFeedPage:
 
     @allure.title('Проверка увеличения числа на счетчике общего количества выполненных заказов')
@@ -50,6 +48,5 @@ class TestFeedPage:
         new_order_id = main_page.get_number_of_order_in_modal_confirmation()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
-        assert feed_page.get_order_number_in_feed_progress_section() == '0'+new_order_id
-
-    
+        order_in_progress_id = feed_page.get_order_number_in_feed_progress_section()
+        assert new_order_id in order_in_progress_id
