@@ -71,4 +71,4 @@ class MainPageLocators:
                                            ']//button[contains(@class, "close")]')
 
     # Оверлей. Подарок от наставника.
-    OVERLAY = By.XPATH, "//*[@id='root']/div/div/div"
+    OVERLAY = By.XPATH, ".//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"
