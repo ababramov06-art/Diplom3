@@ -4,12 +4,7 @@ import allure
 
 
 class MainPage(BasePage):
-    @allure.step('Кликнуть по кнопке перехода в личный кабинет в хэдере')
-    def click_on_personal_account_in_header(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        self.wait_visibility_of_element(MainPageLocators.button_personal_account)
-        self.click_on_element(MainPageLocators.button_personal_account)
-
+   
     @allure.step('Кликнуть по кнопке "Лента заказов" в хэдере')
     def click_header_feed_button(self):
         self.wait_visibility_of_element(MainPageLocators.button_order_feed_in_header)
@@ -26,11 +21,7 @@ class MainPage(BasePage):
         self.wait_for_element_hide(MainPageLocators.OVERLAY)
         return self.get_text_on_element(MainPageLocators.constructor_title)
 
-    @allure.step('Кликнуть по кнопке "Войти в аккаунт" на главной')
-    def click_on_button_login_in_main(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        self.click_on_element(MainPageLocators.button_login_in_main)
-
+    
     @allure.step('Проверить отображение окна о создании заказа')
     def check_displaying_of_confirmation_modal_of_order(self):
         self.wait_for_element_hide(MainPageLocators.OVERLAY)
