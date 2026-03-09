@@ -63,9 +63,6 @@ class MainPage(BasePage):
 
     @allure.step('Добавить интгридиенты')
     def drag_and_drop_ingredient_to_order(self):
-        #self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        #source_locator = self.find_element_with_wait(MainPageLocators.burger_ingredient)
-        #target_locator = self.find_element_with_wait(MainPageLocators.place_for_ingredients)
         self.drag_and_drop_element(MainPageLocators.burger_ingredient, MainPageLocators.place_for_ingredients)
 
     @allure.step('Получить количество ингредиентов')
@@ -78,14 +75,10 @@ class MainPage(BasePage):
         self.wait_for_element_hide(MainPageLocators.OVERLAY)
         self.click_on_element(MainPageLocators.button_make_order)
 
-    @allure.step('Проверить отображение окна о создании заказа')
-    def check_displaying_of_confirmation_modal_of_order(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        return self.check_displaying_of_element(MainPageLocators.confirmation_modal_of_order)
-
     @allure.step('Получить номер в окне о создании заказа')
     def get_number_of_order_in_modal_confirmation(self):
         self.wait_for_element_to_change_text(MainPageLocators.number_of_order_in_modal_confirmation, '9999')
+        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         number_of_order = 0
         number_of_order = self.get_text_on_element(MainPageLocators.number_of_order_in_modal_confirmation)
         return number_of_order

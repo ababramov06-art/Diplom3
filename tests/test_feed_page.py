@@ -1,10 +1,7 @@
 from page_objects.feed_page import FeedPage
 from page_objects.main_page import MainPage
-from page_objects.order_history_page import OrderHistoryPage
-from page_objects.account_page import AccountPage
 from conftest import *
 import allure
-from selenium.common.exceptions import TimeoutException
 class TestFeedPage:
 
     @allure.title('Проверка увеличения числа на счетчике общего количества выполненных заказов')
@@ -44,7 +41,7 @@ class TestFeedPage:
         main_page.click_on_button_login_in_main()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
-
+        
         new_order_id = main_page.get_number_of_order_in_modal_confirmation()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()

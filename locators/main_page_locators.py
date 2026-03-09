@@ -14,44 +14,16 @@ class MainPageLocators:
     # Кнопка "Конструктор" в шапке сайта
     header_of_page_constructor = (By.XPATH, '//p[text() = "Конструктор"]')
 
-    # Селектор, помечающий выбранный раздел конструктора как активный
-    selected_button = (By.XPATH, ('//div[@class = '
-                                  '"tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect"]'))
-
     # Заголовок раздела "Конструктор"
     constructor_title = (By.XPATH, '//section[contains(@class, "BurgerIngredients_ingredients")]/h1')
-
-    # Заголовок раздела "Булки" в меню конструктора
-    buns_block = (By.XPATH, '//span[text() = "Булки"]')
-
-    # Заголовок раздела "Соусы" в меню конструктора
-    sauces_block = (By.XPATH, '//span[text() = "Соусы"]')
-
-    # Заголовок раздела "Начинки" в меню конструктора
-    fillings_block = (By.XPATH, '//span[text() = "Начинки"]')
 
     # Кнопка "Лента заказов"
     button_order_feed_in_header = (By.XPATH, '//p[text()="Лента Заказов"]/parent::a/parent::li')
 
-    # Ингредиент
-    ingredient_1 = (By.XPATH, '(.//p[@class="BurgerIngredient_ingredient__text__yp3dH"])[1]')
-
-    # Заголовок окна "Детали ингредиента"
-    header_of_modal_details = (By.XPATH, '//h2[contains(@class, "Modal_modal__title") and contains(text(), "Детали")]')
-
-    # Кнопка с крестиком, закрывающая окно "Детали ингредиента"
-    button_close_modal = (By.XPATH, '//section[contains(@class, '
-                                    '"Modal_modal_opened")]//button[contains(@class, "close")]')
-
-    # Картинка ингредиента в общем списке
-    burger_ingredient = (By.XPATH, './/*[@alt="Флюоресцентная булка R2-D3"]')
-
     # Куда перетаскиваются игнредиенты
     place_for_ingredients = (By.XPATH, '//section[contains(@class, "BurgerConstructor_basket")]')
 
-    # Состав заказа в условной "Корзине"
-    content_of_order = (By.CSS_SELECTOR, '.constructor-element_pos_top .constructor-element__row')
-
+   
     # Кнопка "Оформить заказ"
     button_make_order = (By.CLASS_NAME, 'button_button__33qZ0')
 
@@ -72,3 +44,17 @@ class MainPageLocators:
 
     # Оверлей. Подарок от наставника.
     OVERLAY = By.XPATH, ".//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"
+
+     # Картинка ингредиента в общем списке
+    burger_ingredient = (By.XPATH, './/*[@alt="Флюоресцентная булка R2-D3"]')
+    # Ингредиент
+    ingredient_1 = (By.XPATH, '(.//p[@class="BurgerIngredient_ingredient__text__yp3dH"])[1]')
+
+    # Кнопка с крестиком, закрывающая окно "Детали ингредиента"
+    button_close_modal = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")]//button[contains(@class, "close")]')
+    
+    # Заголовок окна "Детали ингредиента"
+    header_of_modal_details = (By.XPATH, '//*[@id="root"]/div/section/div[1]/div/h2')
+
+    # Оверлей модального окна заказа
+    CHECK = (By.XPATH, "//*[@id='root']/div/div/img")
