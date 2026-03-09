@@ -55,6 +55,3 @@ class MainPageLocators:
     
     # Заголовок окна "Детали ингредиента"
     header_of_modal_details = (By.XPATH, '//*[@id="root"]/div/section/div[1]/div/h2')
-
-    # Оверлей модального окна заказа
-    CHECK = (By.XPATH, "//*[@id='root']/div/div/img")
