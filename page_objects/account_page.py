@@ -1,4 +1,4 @@
-from page_objects.base_page import BasePage
+from base_page import BasePage
 from locators.account_page_locators import AccountPageLocators
 import allure
 
