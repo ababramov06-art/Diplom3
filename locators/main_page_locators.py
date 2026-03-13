@@ -8,9 +8,6 @@ class MainPageLocators:
     # Кнопка "Личный кабинет"
     button_personal_account = (By.XPATH, '//p[text()="Личный Кабинет"]/parent::a')
 
-    # Кнопка "Оформить заказ"
-    button_make_the_order = (By.XPATH, '//button[text()="Оформить заказ"]')
-
     # Кнопка "Конструктор" в шапке сайта
     header_of_page_constructor = (By.XPATH, '//p[text() = "Конструктор"]')
 
@@ -23,8 +20,7 @@ class MainPageLocators:
     # Куда перетаскиваются игнредиенты
     place_for_ingredients = (By.XPATH, '//section[contains(@class, "BurgerConstructor_basket")]')
 
-   
-    # Кнопка "Оформить заказ"
+   # Кнопка "Оформить заказ"
     button_make_order = (By.CLASS_NAME, 'button_button__33qZ0')
 
     # Количество экземпляров ингредиента в заказе (счетчик)
@@ -54,4 +50,5 @@ class MainPageLocators:
     button_close_modal = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")]//button[contains(@class, "close")]')
     
     # Заголовок окна "Детали ингредиента"
-    header_of_modal_details = (By.XPATH, '//*[@id="root"]/div/section/div[1]/div/h2')
+    header_of_modal_details = (By.XPATH, '//div[@class="Modal_modal__container__Wo2l_"]//h2')
+   
