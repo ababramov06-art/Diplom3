@@ -79,3 +79,13 @@ def set_user_tokens(driver, create_new_user_and_delete):
     refresh_token = user_data.get('refreshToken')
     driver.execute_script(f'window.localStorage.setItem("accessToken", "{access_token}");')
     driver.execute_script(f'window.localStorage.setItem("refreshToken", "{refresh_token}");')
+    
+@pytest.fixture
+@allure.title('Фикстура передает в драйвер токены созданного пользователя')
+def set_user_tokens(driver, create_new_user_and_delete):
+    driver.get(Urls.base_url)
+    user_data = create_new_user_and_delete[1]
+    access_token = user_data.get('accessToken')
+    refresh_token = user_data.get('refreshToken')
+    driver.execute_script(f'window.localStorage.setItem("accessToken", "{access_token}");')
+    driver.execute_script(f'window.localStorage.setItem("refreshToken", "{refresh_token}");')
