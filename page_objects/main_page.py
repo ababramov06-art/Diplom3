@@ -4,18 +4,7 @@ import allure
 
 
 class MainPage(BasePage):
-
-    @allure.step('Кликнуть по кнопке перехода в личный кабинет в хэдере')
-    def click_on_personal_account_in_header(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        self.wait_visibility_of_element(MainPageLocators.button_personal_account)
-        self.click_on_element(MainPageLocators.button_personal_account)
     
-    @allure.step('Кликнуть по кнопке "Войти в аккаунт" на главной')
-    def click_on_button_login_in_main(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
-        self.click_on_element(MainPageLocators.button_login_in_main)
-   
     @allure.step('Кликнуть по кнопке "Лента заказов" в хэдере')
     def click_header_feed_button(self):
         self.wait_visibility_of_element(MainPageLocators.button_order_feed_in_header)
@@ -69,18 +58,15 @@ class MainPage(BasePage):
 
     @allure.step('Получить количество ингредиентов')
     def get_count_of_ingredients(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         return self.get_text_on_element(MainPageLocators.count_of_ingredient)
 
     @allure.step('Кликнуть на кнопку создания заказа')
     def click_on_button_make_order(self):
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         self.click_on_element(MainPageLocators.button_make_order)
 
     @allure.step('Получить номер в окне о создании заказа')
     def get_number_of_order_in_modal_confirmation(self):
         self.wait_for_element_to_change_text(MainPageLocators.number_of_order_in_modal_confirmation, '9999')
-        self.wait_for_element_hide(MainPageLocators.OVERLAY)
         number_of_order = 0
         number_of_order = self.get_text_on_element(MainPageLocators.number_of_order_in_modal_confirmation)
         return number_of_order

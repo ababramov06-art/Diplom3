@@ -2,13 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class MainPageLocators:
-    # Кнопка "Войти в аккаунт" на главной
-    button_login_in_main = By.XPATH, './/button[text() = "Войти в аккаунт"]'
-
-    # Кнопка "Личный кабинет"
-    button_personal_account = (By.XPATH, '//p[text()="Личный Кабинет"]/parent::a')
-
-    # Кнопка "Конструктор" в шапке сайта
+   # Кнопка "Конструктор" в шапке сайта
     header_of_page_constructor = (By.XPATH, '//p[text() = "Конструктор"]')
 
     # Заголовок раздела "Конструктор"
@@ -43,6 +37,7 @@ class MainPageLocators:
 
      # Картинка ингредиента в общем списке
     burger_ingredient = (By.XPATH, './/*[@alt="Флюоресцентная булка R2-D3"]')
+
     # Ингредиент
     ingredient_1 = (By.XPATH, '(.//p[@class="BurgerIngredient_ingredient__text__yp3dH"])[1]')
 

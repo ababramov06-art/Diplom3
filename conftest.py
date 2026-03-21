@@ -29,15 +29,6 @@ def driver(request):
     yield driver
     driver.quit()
 
-
-@pytest.fixture
-def generate_user_credentials():
-    email = create_random_email()
-    password = create_random_password()
-    name = create_random_name()
-    return email, password, name
-
-
 @pytest.fixture
 @allure.title('Фикстура создает пользователя с рандомными кредами и удаляет его из базы после теста')
 def create_new_user_and_delete():
@@ -53,22 +44,6 @@ def create_new_user_and_delete():
 
     access_token = response_body['accessToken']
     requests.delete(Urls.user_delete, headers={'Authorization': access_token})
-
-
-@pytest.fixture
-@allure.title('Фикстура создает пользователя и заказ для его аккаунта')
-def create_user_and_order_and_delete(create_new_user_and_delete):
-    access_token = create_new_user_and_delete[1]['accessToken']
-    headers = {'Authorization': access_token}
-    payload = {'ingredients': [
-        '61c0c5a71d1f82001bdaaa73', '61c0c5a71d1f82001bdaaa6c',
-        '61c0c5a71d1f82001bdaaa76', '61c0c5a71d1f82001bdaaa79'
-    ]}
-    response_body = requests.post(Urls.order_create, data=payload, headers=headers)
-
-    yield access_token, response_body
-    requests.delete(Urls.user_delete, headers={'Authorization': access_token})
-
 
 @pytest.fixture
 @allure.title('Фикстура передает в драйвер токены созданного пользователя')
