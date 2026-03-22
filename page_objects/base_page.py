@@ -1,27 +1,55 @@
-from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
+import asyncio
 import allure
 class BasePage:
+
     def __init__(self, driver):
         self.driver = driver
 
     @allure.step('Подождать прогрузки элемента')
     def wait_visibility_of_element(self, locator):
-        WebDriverWait(self.driver, 30).until(expected_conditions.visibility_of_element_located(locator))
-        
-    @allure.step('Найти элемент на странице')
+        WebDriverWait(self.driver, 30).until(EC.visibility_of_element_located(locator))
+
+    @allure.step('Найти элемент на странице с ожиданием')
     def find_element_with_wait(self, locator):
-        self.wait_visibility_of_element(locator)
-        return self.driver.find_element(*locator)
+        timeout = 30
+        try:
+            wait = WebDriverWait(self.driver, timeout)
+            element = wait.until(EC.visibility_of_element_located(locator))
+            return element
+        except asyncio.TimeoutError:
+            raise asyncio.TimeoutError(
+                f"Элемент {locator} не найден или не стал видимым за {timeout} сек."
+            )
 
-    @allure.step('Кликнуть на элемент')
-    def click_on_element(self, locator):
-        target = self.check_element_is_clickable(locator)
-        click = ActionChains(self.driver)
-        click.move_to_element(target).click().perform()
+    @allure.step('Кликнуть на элемент с повторными попытками')
+    def click_on_element(self, locator, max_retries=3):
+        timeout = 30
+        wait = WebDriverWait(self.driver, timeout)
 
+        for attempt in range(max_retries):
+            try:
+                element = wait.until(EC.element_to_be_clickable(locator))
+                element.click()
+                allure.attach(
+                    f"Клик выполнен успешно с {attempt + 1}-й попытки",
+                    name="Результат клика",
+                    attachment_type=allure.attachment_type.TEXT
+                )
+                return
+            except asyncio.TimeoutError:
+                if attempt == max_retries - 1:
+                    raise asyncio.TimeoutError(
+                        f"Не удалось кликнуть на элемент {locator} после {max_retries} попыток"
+                    )
+                # Логируем попытку
+                allure.attach(
+                    f"Попытка {attempt + 1} не удалась: элемент перекрыт",
+                    name="Статус попытки",
+                    attachment_type=allure.attachment_type.TEXT
+                )
+                   
     @allure.step('Ввести значение в поле ввода')
     def send_keys_to_input(self, locator, keys):
         self.driver.find_element(*locator).send_keys(keys)
@@ -75,16 +103,15 @@ class BasePage:
 
     @allure.step('Подождать, пока элемент закроется')
     def wait_for_closing_of_element(self, locator):
-        WebDriverWait(self.driver, 30).until_not(expected_conditions.visibility_of_element_located(locator))
+        WebDriverWait(self.driver, 30).until_not(EC.visibility_of_element_located(locator))
 
     @allure.step('Проверить кликабельность элемента')
     def check_element_is_clickable(self, locator):
-        return WebDriverWait(self.driver, 30).until(expected_conditions.element_to_be_clickable(locator))
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(locator))
 
     @allure.step('Подождать смену текста на элементе')
     def wait_for_element_to_change_text(self, locator, value):
-        return WebDriverWait(self.driver, 30).until_not(expected_conditions.
-                                                        text_to_be_present_in_element(locator, value))
+        return WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(locator, value))
     
     @allure.step('Подождать пока элемент не станет невидимым')
     def wait_for_element_hide(self, locator):
